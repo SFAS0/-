@@ -1,0 +1,60 @@
+from art import tprint
+import pyautogui as root
+tprint('by SFAS', font='big')
+
+flag = True
+
+
+def start():
+    while True:
+        flag = True
+        while True:
+            root.sleep(0.2)
+            doika = root.locateOnScreen('BUTTONS/Doik.PNG', confidence=0.65)
+            if doika is None:
+                continue
+            else:
+                root.press('e')
+                root.sleep(0.7)
+                milk = root.locateOnScreen('BUTTONS/Milk.PNG', confidence=0.65, region=(1275, 845, 1355, 920))
+                if milk is None:
+                    continue
+                while True:
+                    root.sleep(0.3)
+                    symbA = root.locateOnScreen('BUTTONS/A.PNG', confidence=0.95, region=(835, 820, 925, 915))
+                    if symbA is None:
+                        while True:
+                            root.press('d')
+                            root.sleep(0.04)
+                            root.press('a')
+                            milk = root.locateOnScreen('BUTTONS/Milk.PNG', confidence=0.75, region=(1275, 845, 1355, 920))
+                            root.sleep(0.4)
+                            if milk is None:
+                                break
+                    else:
+                        while True:
+                            root.press('a')
+                            root.sleep(0.04)
+                            root.press('d')
+                            milk = root.locateOnScreen('BUTTONS/Milk.PNG', confidence=0.75, region=(1275, 845, 1355, 920))
+                            root.sleep(0.4)
+                            if milk is None:
+                                break
+                    milk = root.locateOnScreen('BUTTONS/Milk.PNG', confidence=0.75, region=(1275, 845, 1355, 920))
+                    if milk is None:
+                        break
+            flag = True
+            print('Успешно')
+            root.sleep(0.03)
+
+
+def main():
+    while True:
+        print('Введите start что бы запустить бота')
+        starts = input()
+        if starts == 'start':
+            print('Поехали!')
+            start()
+
+
+main()
